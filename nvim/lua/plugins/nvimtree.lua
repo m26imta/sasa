@@ -19,7 +19,6 @@ local nvimtree_config = function()
       },
     },
 
-
     -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Archived#example
     on_attach = function(bufnr)
       local api = require("nvim-tree.api")
