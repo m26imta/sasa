@@ -4,6 +4,10 @@ vim.g.loaded_netrw = 1
 
 local nvimtree_config = function()
   require "nvim-tree".setup {
+    disable_netrw = true,
+    hijack_cursor = true,
+    hijack_netrw = false,
+    update_cwd = true,
     view = {
       width = 30,
       side = "left",
