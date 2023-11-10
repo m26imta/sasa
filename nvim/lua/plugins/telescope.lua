@@ -41,7 +41,6 @@ local config = function()
   }
   telescope.setup(opts)
   telescope.load_extension("fzf")
-  
 end
 
 
@@ -50,7 +49,17 @@ return {
     tag = "0.1.4",
     -- version = fasle, -- telescope did only one release, so use HEAD for now
     cmd = "Telescope",
-    -- keys = require("core.keymaps").plugins_keymaps.telescope,
+    keys = {
+      { "<leader>tll", "<cmd>Telescope<cr>", desc = "Open Telescope" },
+      { "<leader>tff", "<cmd>Telescope find_files<cr>", desc = "Telescope: Find Files" },
+      { "<leader>tlg", "<cmd>Telescope live_grep<cr>", desc = "Telescope: Live Grep" },
+      { "<leader>tgs", "<cmd>Telescope grep_string<cr>", desc = "Telescope: Grep String" },
+      {
+        "<leader>tps",
+        function() require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ")  }); end,
+        desc = "Telescope: Search string"
+      },
+    },
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
