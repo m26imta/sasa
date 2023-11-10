@@ -9,14 +9,22 @@ M.treesitter = {
 M.mason = {
   ensure_installed = {
     "pyright",
-    "black", "isort", "flake8",
+    "black", "isort",
+    -- "flake8",
+    "mypy", "ruff",
+    "debugpy", -- DAP
   }
 }
 
 M.null_ls = {
   sources = {
-    formatting = { "black", "isort" },
-    diagnostics = { "flake8" },
+    formatting = {
+      "black", "isort",
+    },
+    diagnostics = {
+      -- "flake8",
+      "mypy", "ruff",
+    },
   },
 }
 

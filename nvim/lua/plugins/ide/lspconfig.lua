@@ -1,7 +1,14 @@
 local M = {}
 
 local lsp_config = function()
-  require("neodev").setup({})
+  require("neodev").setup({
+    library = {
+      types = true,
+      plugins = {
+        "nvim-dap-ui",
+      },
+    },
+  })
   require("neoconf").setup({})
   local lspconfig = require("lspconfig")
   local lang_api = require("plugins.ide.langs")
