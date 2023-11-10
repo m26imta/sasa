@@ -1,40 +1,37 @@
 local config = function()
+  local lang_api = require("plugins.ide.langs")
   local null_ls = require("null-ls")
   local formatting = null_ls.builtins.formatting
   local diagnostics = null_ls.builtins.diagnostics
   --
   local on_attach = function(client, bufnr)
-    print("null_ls on_attach bufnr: " .. bufnr .. " client: " .. client.name)
+    -- formatting
     if client.supports_method("textDocument/formatting") then
-      -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()")
-      vim.cmd("autocmd BufWritePre bufnr lua vim.lsp.buf.formatting()")
+      -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({name = \"" .. client.name .. "\"})")
+    --   vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({name="null-ls"})]])
+      vim.keymap.set("n", "<leader>fm2", ":lua vim.lsp.buf.format({name=\"null-ls\"})<CR>:echo \"Format buffer="..bufnr.." using null-ls\"<CR>", {desc="Format using null-ls", noremap=true, silent=true, buffer=bufnr})
     end
-    if client.supports_method("textDocument/documentHighlight") then
-      vim.cmd [[
-      augroup document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-      ]]
-    end
+
+    -- documentHighlight if supported
+    -- if client.supports_method("textDocument/documentHighlight") then
+    --   vim.cmd [[
+    --   augroup document_highlight
+    --     autocmd! * <buffer>
+    --     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    --     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    --   augroup END
+    --   ]]
+    -- end
   end
 
-  local langs = require("plugins.ide.langs")
-  local sources = {}
-  local _sources = langs.get_null_ls_enabled_sources()
-  for _, v in pairs(_sources.formatting) do
-    table.insert(sources, formatting[v])
-  end
-  for _, v in pairs(_sources.diagnostics) do
-    table.insert(sources, diagnostics[v])
-  end
+  local enabled_sources = lang_api.get_null_ls_enabled_sources()
 
   null_ls.setup({
     debug = false,
-    sources = sources,
+    sources = enabled_sources,
     on_attach = on_attach,
   })
+
 end
 
 return {
@@ -46,4 +43,3 @@ return {
   config = config,
   event = { "BufReadPost", "BufNewFile", "BufEnter" },
 }
-

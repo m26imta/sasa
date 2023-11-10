@@ -14,6 +14,7 @@ end
 
 return {
   { "williamboman/mason.nvim",
+    event = "VeryLazy",
     config = config,
   },
   { "williamboman/mason-lspconfig.nvim" },

@@ -26,13 +26,14 @@ return {
     config = config,
     dependencies = {
       require("plugins.ide.treesitter-context"),
+      -- {"wellle/context.vim"},
       require("plugins.ide.treesitter-refactor"),
       require("plugins.ide.treesitter-textobject"),
       {"windwp/nvim-ts-autotag" },
       {"windwp/nvim-autopairs", opts = {} },
       -- {"JoosepAlviste/nvim-ts-context-commentstring" },
       { "numToStr/Comment.nvim",
-        event = "VeryLazy",
+        -- event = "VeryLazy",
         opts = {
           padding = true,     -- Add a space b/w comment and the line
           sticky = true,      -- Whether the cursor should stay at its position

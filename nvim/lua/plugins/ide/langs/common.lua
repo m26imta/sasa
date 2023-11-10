@@ -14,15 +14,9 @@ M.mason = {
 }
 
 M.null_ls = {
-  ensure_installed = {},
   sources = {}
 }
 
 M.dap = {
-
 }
-
-M.do_setup_lang = function()
-end
-
 return M

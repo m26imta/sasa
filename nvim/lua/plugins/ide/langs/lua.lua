@@ -1,67 +1,73 @@
 local M = {}
 
+M.path = vim.fn.stdpath("config") .. "/plugins/ide/langs/lua.lua"
+
 M.treesitter = {
   ensure_installed = {
-    "lua",
+    "lua"
   }
 }
 
 M.mason = {
   ensure_installed = {
     "lua_ls",
+    "stylua",
+    -- "luaformatter"
   }
 }
 
 M.null_ls = {
-  ensure_installed = {},
-  sources = {},
+  sources = {
+    formatting = {
+      -- "lua_format",  -- luaformatter: null_ls.builtins.formatting.lua_format
+      "stylua",
+    },
+    diagnostics = {
+    },
+  }
 }
 
-M.dap = {
+M.dap = {}
 
-}
-
-local on_attach = function(client, bufnr)
-  -- print("ide_langs_lua on_attach: client =  " .. client.name)
-  require("plugins.ide.lspconfig").lsp_set_keymaps(client, bufnr)
+-- ----------------
+-- lspconfig
+-- ----------------
+local lspconfig_on_attach = function(...)
+  require("plugins.ide.langs").default_lsp_on_attach(...)
+  -- set some extra key binding
+  -- set some autocmd
 end
 
-local get_capabilities = function()
-  local capabilities = {}
-  capabilities = vim.lsp.protocol.make_client_capabilities()
-  --capabilities.textDocument.completion.completionItem.snippetSupport = true
-  local ok, cmp = pcall(require, "cmp_nvim_lsp")
-  if ok then
-    capabilities = cmp.default_capabilities(capabilities)
-  end
+local get_lspconfig_capabilities = function()
+  local capabilities = require("plugins.ide.langs").get_default_lsp_capabilities()
   return capabilities
 end
 
-local capabilities = get_capabilities()
-
 local lspconfig_opts = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-
   settings = {
     Lua = {
       -- make the language server recognize "vim" global
-      diagnostics = {
-        globals = { "vim" },
-      },
+      diagnostics = { globals = { "vim" } },
       workspace = {
         -- make language server aware of runtime files
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. "/lua"] = true,
-        },
-      },
-    },
-  },
+          [vim.fn.stdpath("config") .. "/lua"] = true
+        }
+      }
+    }
+  }
 }
 
-M.do_setup_lang = function()
-  require("lspconfig").lua_ls.setup(lspconfig_opts)
+M.get_lspconfig = function()
+  return vim.tbl_extend(
+    "force",
+    {
+      lsp_name = "lua_ls",
+      on_attach = lspconfig_on_attach,
+      capabilities = get_lspconfig_capabilities(),
+    },
+    lspconfig_opts)
 end
 
 return M

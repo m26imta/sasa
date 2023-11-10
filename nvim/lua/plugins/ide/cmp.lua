@@ -128,6 +128,7 @@ local cmp_config = function()
       { name = "nvim_lsp_signature_help" },
       -- { name = "calc" },
       -- { name = "rg" },
+      -- {}
       {
         name = "luasnip",
         option = {} or {
