@@ -1,7 +1,16 @@
 local langs = require("plugins.ide.langs")
 local config = function()
-  require("mason").setup()
-  require("mason-lspconfig").setup()
+  require("mason").setup({
+    ui = {
+      -- border = "rounded",
+      icons = {
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗",
+      }
+    }
+  })
+  require("mason-lspconfig").setup({})
   require("mason-tool-installer").setup({
 		ensure_installed = langs.mason_ensure_installed,
 		auto_update = false, -- Default: false
@@ -14,7 +23,7 @@ end
 
 return {
   { "williamboman/mason.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     config = config,
   },
   { "williamboman/mason-lspconfig.nvim" },

@@ -1,3 +1,5 @@
+vim.cmd("source " .. vim.fn.stdpath("config") .. "/lua/core/.vimrc")
+
 -- Neovide
 if vim.g.neovide then
   local cursor_vfx_mode = {"railgun", "torpedo", "pixiedust", "sonicboom", "ripple", "wireframe"}

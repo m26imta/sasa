@@ -41,6 +41,7 @@ local cmp_config = function()
   }
   -- set icon for cmp kind
   local icon = kindicon.lspkind_default
+  table.insert(icon, {Codeium = ""} )
 
   -- formatting
   local formatting = {
@@ -63,6 +64,7 @@ local cmp_config = function()
           luasnip  = " LuaSnip",
           buffer   = "  Buffer",
           path     = "    Path",
+          codeium  = " Codeium",
           nvim_lsp_signature_help = "   _help",
           -- cmdline = "[cmdline]",
           -- calc = "[calc]",
@@ -125,6 +127,7 @@ local cmp_config = function()
       { name = "path" },
       { name = "buffer" },
       -- { name = "cmdline" },
+      -- { name = "Codeium"},
       { name = "nvim_lsp_signature_help" },
       -- { name = "calc" },
       -- { name = "rg" },
@@ -177,6 +180,7 @@ return {
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
+    -- commit = "6c84bc75c64f778e9f1dcb798ed41c7fcb93b639",  -- stay with this commit for codeium.nvim can work
     dependencies = {
       -- cmp sources
       {'hrsh7th/cmp-nvim-lsp' },                    -- Required - nvim-cmp source for neovim's built-in language server client. 

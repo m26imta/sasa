@@ -32,6 +32,21 @@ M.dap = {
 
 }
 
+M.lazy = {
+  { "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function()
+      local path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+      vim.keymap.set("n", "<leader>dbr", function() require("dap-python").test_method() end)
+    end,
+  },
+}
+
 -- ----------------
 -- lspconfig
 -- ----------------
@@ -41,7 +56,7 @@ local lspconfig_on_attach = function(client, bufnr)
   -- set some autocmd
   -- vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({name="pyright"})]])
   -- vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({name="null-ls"})]])  -- auto format using null-ls / flake8
-  vim.keymap.set("n", "<leader>fmm", ":lua vim.lsp.buf.format({name=\"null-ls\"})<CR>:echo \"Format buffer="..bufnr.." using null-ls<CR>", {desc ="Format using null-ls", noremap=true, silent=true, buffer=bufnr})
+  vim.keymap.set("n", "<leader>fmm", ":lua vim.lsp.buf.format({name=\"null-ls\"})<CR>:echo \"Format buffer="..bufnr.." using null-ls\"<CR>", {desc ="Format using null-ls", noremap=true, silent=true, buffer=bufnr})
 end
 
 local get_lspconfig_capabilities = function()

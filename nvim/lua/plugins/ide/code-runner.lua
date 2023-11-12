@@ -5,6 +5,7 @@ local config = function()
     filetype = {
       java = { "cd $dir &&", "javac $fileName &&", "java $fileNameWithoutExt" },
       python = "python3 -u",
+      -- python = { "cd $dir &&", "python3 -u \"$fileName\"" },
       typescript = "deno run",
       rust = { "cd $dir &&",
           "rustc $fileName &&",

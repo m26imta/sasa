@@ -4,6 +4,7 @@ return {
   require("plugins.ide.cmp"),
   require("plugins.ide.lspconfig"),
   require("plugins.ide.codeium"),
+  -- require("plugins.ide.codeium-nvim"),
   require("plugins.ide.null_ls"),
   require("plugins.ide.dap"),
   require("plugins.ide.navic"),
