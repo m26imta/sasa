@@ -71,15 +71,17 @@ nnoremap <leader>da :Lexplore %:p:h<CR>
 nnoremap <leader>dd :Lexplore<CR>
 nnoremap <leader>1 :Lexplore<CR>
 
-" Better move through wrap line
-noremap j gj
-noremap k gk
-
 " Move around text in InsertMode & CommandMode
 noremap! <C-h> <LEFT>
 noremap! <C-l> <RIGHT>
 noremap! <C-j> <DOWN>
 noremap! <C-k> <UP>
+
+" Better move through wrap line
+noremap j g<DOWN>
+noremap k g<UP>
+inoremap <C-j> <C-o>g<DOWN>
+inoremap <C-k> <C-o>g<UP>
 
 " Move around windows
 nnoremap <C-h> <C-w><LEFT>
