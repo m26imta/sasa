@@ -3,7 +3,7 @@ return {
   require("plugins.ide.mason"),
   require("plugins.ide.cmp"),
   require("plugins.ide.lspconfig"),
-  require("plugins.ide.codeium"),
+  -- require("plugins.ide.codeium"),
   -- require("plugins.ide.codeium-nvim"),
   require("plugins.ide.null_ls"),
   require("plugins.ide.dap"),
@@ -13,6 +13,6 @@ return {
   require("plugins.ide.code-runner"),
   require("plugins.ide.colorizer"),
   require("plugins.ide.git"),
-  require("plugins.ide.ipynb_molten"),
-  require("plugins.ide.ipynb_notebooknavigator"),
+  -- require("plugins.ide.ipynb_molten"),
+  -- require("plugins.ide.ipynb_notebooknavigator"),
 }

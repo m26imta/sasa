@@ -63,6 +63,7 @@ return {
     cmd = { "NvimTreeToggle", "NvimTreeFindFileToggle" },
     keys = {
       { "<leader>1", "<cmd>NvimTreeToggle<cr>", silent = true },
+      { "<leader>da", "<cmd>cd %:h<cr><cmd>NvimTreeOpen<cr>", silent = true },
     },
     config = nvimtree_config,
     dependencies = { "nvim-tree/nvim-web-devicons" },
