@@ -34,6 +34,7 @@ return {
   },
   {
     "hkupty/iron.nvim",
+    -- enabled = false,
     -- event = "VeryLazy",
     version = false,  -- false -> latest commit
     config = function()

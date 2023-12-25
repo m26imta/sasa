@@ -1,3 +1,4 @@
+require("plugins.ide.tmp")
 return {
   require("plugins.ide.treesitter"),
   require("plugins.ide.mason"),
@@ -14,5 +15,5 @@ return {
   require("plugins.ide.colorizer"),
   require("plugins.ide.git"),
   -- require("plugins.ide.ipynb_molten"),
-  -- require("plugins.ide.ipynb_notebooknavigator"),
+  require("plugins.ide.ipynb_notebooknavigator"),
 }
