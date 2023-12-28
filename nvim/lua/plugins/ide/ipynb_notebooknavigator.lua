@@ -23,7 +23,7 @@ return {
   },
   {
     "GCBallesteros/jupytext.nvim",
-    -- event = "VeryLazy",
+    event = "VeryLazy",
     config = function()
       require("jupytext").setup(
         {
