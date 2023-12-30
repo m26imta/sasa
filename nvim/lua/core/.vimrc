@@ -2,24 +2,25 @@
 "" .vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !has('nvim')
-    " Change Your Vim Cursor from a Block to Line in Insert Mode
-    let &t_SI = "\e[6 q"
-    let &t_EI = "\e[2 q"
-    " write as sudo
-    "cmap w!! w !sudo tee > /dev/null %
-    command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+  " Change Your Vim Cursor from a Block to Line in Insert Mode
+  let &t_SI = "\e[6 q"
+  let &t_EI = "\e[2 q"
+  " write as sudo
+  "cmap w!! w !sudo tee > /dev/null %
+  command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 endif
 if has('win32')
-    set ff=dos
+  set ff=dos
 endif
 
-color industry
+"" color industry
 set timeoutlen=400
 set clipboard=unnamed,unnamedplus
 set mouse=a number norelativenumber cursorline
 set ts=2 sw=2 sts=2 autoindent smartindent expandtab smarttab
 set ignorecase smartcase incsearch hlsearch noshowmatch
-set enc=utf-8 fenc=utf-8 nobackup writebackup swapfile undofile
+"" set enc=utf-8 fenc=utf-8
+set nobackup writebackup swapfile undofile
 set iskeyword+=- backspace=indent,eol,start
 set wrap linebreak showbreak=↪ whichwrap+=<,>,[,],h,l
 set nolist listchars=tab:→\ ,nbsp:␣,trail:•,space:⋅,extends:▶,precedes:◀,eol:↴
@@ -128,7 +129,9 @@ vnoremap <C-f> y<ESC>/<C-r>"<CR>
 vnoremap <C-r><C-e> "hy:%s/<C-r>h//gc<LEFT><LEFT><LEFT>
 
 " Status line
-set showmode
-set laststatus=2
-set statusline=\ %{&paste==1?'[PASTE\ MODE]\ \ ':''}\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+if &statusline==""
+  set showmode
+  set laststatus=2
+  set statusline=\ %{&paste==1?'[PASTE\ MODE]\ \ ':''}\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+endif
 
