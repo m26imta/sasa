@@ -14,6 +14,6 @@ return {
   require("plugins.ide.code-runner"),
   require("plugins.ide.colorizer"),
   require("plugins.ide.git"),
-  -- require("plugins.ide.ipynb_molten"),
+  require("plugins.ide.ipynb_molten"),
   require("plugins.ide.ipynb_notebooknavigator"),
 }
